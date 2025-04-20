@@ -1,0 +1,389 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home Automation</title>
+    <style>
+        /* General Styling */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f4f9;
+            color: #333;
+            text-align: center;
+        }
+
+
+
+        /* Navbar */
+        /* .navbar {
+            background: #007BFF;
+            padding: 10px 0;
+            color: white;
+            font-size: 1.2em;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        } */
+
+        /* Navbar */
+.navbar {
+    background: #007BFF;
+    padding: 10px 0;
+    color: white;
+    font-size: 1.2em;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    position: fixed;        /* Fixes it to the top */
+    top: 0;                 /* Aligns to top edge */
+    left: 0;
+    width: 100%;            /* Full width */
+    z-index: 1000;          /* Keeps it above other content */
+}
+
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        /* Device Controls */
+        .device {
+            margin: 20px auto;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            max-width: 300px;
+        }
+
+        .device h2 {
+            margin: 10px 0;
+            color: #007BFF;
+        }
+
+        .toggle-label {
+            display: inline-block;
+            width: 60px;
+            height: 30px;
+            background: #ccc;
+            border-radius: 15px;
+            position: relative;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .toggle-label:before {
+            content: '';
+            position: absolute;
+            width: 26px;
+            height: 26px;
+            background: white;
+            border-radius: 50%;
+            top: 2px;
+            left: 2px;
+            transition: transform 0.3s ease;
+        }
+
+        .toggle-input {
+            display: none;
+        }
+
+        .toggle-input:checked + .toggle-label {
+            background: #28a745;
+        }
+
+        .toggle-input:checked + .toggle-label:before {
+            transform: translateX(30px);
+        }
+
+        .mode-button {
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background 0.3s ease;
+        }
+
+        .mode-button:hover {
+            background: #218838;
+        }
+
+        /* Footer */
+        /* footer {
+            background: #007BFF;
+            color: white;
+            padding: 10px 0;
+            margin-top: 20px;
+            font-size: 0.9em;
+            
+        } */
+
+        /* Footer - Stylish version */
+footer {
+    background: linear-gradient(to right, #007BFF, #00c6ff);
+    color: #fff;
+    padding: 15px 0;
+    margin-top: 30px;
+    font-size: 1em;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+        /* Status Message */
+        .status-message {
+            margin-top: 20px;
+            font-size: 1em;
+            color: #28a745;
+            display: none;
+        }
+        /* footer p */
+ 
+
+
+        /* contact us. */
+ 
+.container {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: left;
+    border: 1px solid #007BFF;
+}
+
+.container h1 {
+    font-size: 1.8em;
+    color: #007BFF;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.field {
+    margin: 10px 0;
+}
+
+label {
+    font-size: 1em;
+    color: #333;
+    margin-bottom: 5px;
+    display: block;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 8px;
+    font-size: 0.95em;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    transition: border 0.3s ease;
+}
+
+input:focus, textarea:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+
+.btn {
+    display: block;
+    font-size: 1em;
+    color: #fff;
+    background: #007BFF;
+    padding: 10px;
+    margin: 15px auto 0;
+    border-radius: 5px;
+    transition: background 0.3s;
+    cursor: pointer;
+    border: none;
+    width: 100%;
+    text-align: center;
+}
+
+.btn:hover {
+    background: #0056b3;
+}
+
+
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <a href="#home">Home</a>
+        <a href="Finaldocument.docx">Documentation</a>
+        <a href="#status">Status</a>
+        <a href="/selMode">Mode</a>
+        <a href="#contactus">Contact</a>
+    </div>
+
+    <!-- Main Content -->
+    <font size=8><p>Welcome to your device Assistant</p></font>
+     <div class="sensor"><font size=5>
+            <h2><b><em><u>Room Temperature and Humidity</u></em></b></h2></font>
+            <b><em><font size=5 color="grey"><p id="senData">Loading...</p></font></em></b>
+           <font size=4> <button class="mode-button" onclick="fetchSensorData()">Refresh Data</button></font>
+        </div>
+    <div id="home">
+    <div class="device">
+    <h2>MotionSensor</h2>
+        <input type="checkbox" id="toggle4" class="toggle-input" onchange="getSen()">
+        <label for="toggle4" class="toggle-label"></label>
+        </div>
+        <div class="device">
+            <h2>Light 1</h2>
+            <input type="checkbox" id="toggle1" class="toggle-input" onchange="sendRequest('light1', this.checked)">
+            <label for="toggle1" class="toggle-label"></label>
+        </div>
+
+        <div class="device">
+            <h2>Light 2</h2>
+            <input type="checkbox" id="toggle2" class="toggle-input" onchange="sendRequest('light2', this.checked)">
+            <label for="toggle2" class="toggle-label"></label>
+        </div>
+
+        <div class="device">
+            <h2>Fan</h2>
+            <input type="checkbox" id="toggleFan" class="toggle-input" onchange="sendRequest('fanon', this.checked)">
+            <label for="toggleFan" class="toggle-label"></label>
+        </div>
+
+        <div class="device">
+            <h2>Fan Speed</h2>
+            <input type="range" id="fanSpeed" min="1" max="3" step="1" oninput="adjustFanSpeed(this.value)">
+            <p id="speedValue">Speed: Medium</p>
+        </div>
+    </div>
+
+    <!-- Status Message -->
+    <div id="statusMessage" class="status-message"></div>
+
+    <!-- Footer -->
+    <footer>
+       
+<!-- contact us. -->
+        <center>
+            <div class="container" id="contactus">
+            <h1>Contact Us</h1>
+            <form action="https://api.web3forms.com/submit" method="POST" id="contactForm" onsubmit="return validateForm()">
+                <input type="hidden" name="access_key" value="9f5089f3-b3ad-4461-bdd1-64157e938bdd">
+    
+                <div class="field">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="field">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="field">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="4" required></textarea>
+                </div>
+                <button class="btn" type="submit">Submit</button>
+            </form>
+            </div>
+        </center>
+        <p>&copy; 2025 Abhijit & Rohit </p>
+    </footer>
+
+    <script>
+
+function validateForm() {
+            var username = document.getElementById("username").value;
+            var email = document.getElementById("email").value;
+            var message = document.getElementById("message").value;
+
+            if (username.trim() === "") {
+                alert("Username is required.");
+                return false;
+            }
+            if (email.trim() === "") {
+                alert("Email is required.");
+                return false;
+            }
+            if (!/\S+@\S+\.\S+/.test(email)) {
+                alert("Please enter a valid email address.");
+                return false;
+            }
+            if (message.trim().length < 10) {
+                alert("Message must be at least 10 characters long.");
+                return false;
+            }
+            // alert("Form submitted successfully!");
+            return true;
+        }
+
+        // Send Request to ESP Server
+        function sendRequest(device, state) {
+            fetch(`/devs?device=${device}&state=${state ? 1 : 0}`)
+                .then(response => response.text())
+                .then(data => {
+                    showStatusMessage(data);
+                })
+                .catch(error => {
+                    showStatusMessage("Failed to update device!");
+                });
+        }
+
+        // Adjust Fan Speed
+        function adjustFanSpeed(value) {
+            const speedText = { 1: "Low", 2: "Medium", 3: "High" };
+            document.getElementById("speedValue").innerText = `Speed: ${speedText[value]}`;
+            sendRequest('fan'+value, true);
+        }
+
+
+//function to print temp;humd
+function fetchSensorData() {
+            fetch('/thsensor')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("senData").innerText = data;
+                })
+                .catch(error => {
+                    showStatusMessage("Failed to fetch sensor data!");
+                });
+        }
+
+        // Show Status Message
+        function showStatusMessage(message) {
+            fetch('/devState')
+                .then(response=>response.text())
+                .then(data=>{
+                document.getElementById("statusMessage").innerText=data;
+                })
+        }
+        
+        function getSen()
+        {
+        	const vlu=document.getElementById("toggle4").checked;
+        	if(vlu)
+        	{
+        	fetch(`/pirsnsr`)
+        	.then(response=>response.text())
+        	.then(data=>{
+        		alert(data);
+        		});
+        	}
+        }
+        setInterval(getSen,8000);
+        setInterval(showStatusMessage,5000);
+    </script>
+</body>
+</html>
