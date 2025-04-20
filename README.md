@@ -1,7 +1,7 @@
 Control your home smartly.
 MIT License
 
-Copyright (c) 2025 rohit-ghosh-01
+Copyright (c) 2025 rohit-ghosh-01 & Abhijit Dutta
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
